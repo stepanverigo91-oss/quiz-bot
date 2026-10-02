@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Моя Викторина</title>
+    <script src="https://telegram.org/js/telegram-web-app.js"></script>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background: #1a1a2e;
+            color: white;
+            padding: 20px;
+            text-align: center;
+        }
+        button {
+            background: #4CAF50;
+            color: white;
+            border: none;
+            padding: 15px 30px;
+            font-size: 18px;
+            border-radius: 10px;
+            cursor: pointer;
+            margin-top: 20px;
+        }
+    </style>
+</head>
+<body>
+    <h1 id="greeting">Загрузка...</h1>
+    <button onclick="showAlert()">Нажми меня</button>
+
+    <script>
+        window.Telegram.WebApp.ready();
+        const user = window.Telegram.WebApp.initDataUnsafe?.user;
+        
+        if (user) {
+            document.getElementById('greeting').textContent = 
+                'Привет, ' + user.first_name + '!';
+            console.log('ID пользователя:', user.id);
+        } else {
+            document.getElementById('greeting').textContent = 
+                'Открой меня через Telegram!';
+        }
+        
+        function showAlert() {
+            window.Telegram.WebApp.showAlert('Кнопка работает!');
+        }
+    </script>
+</body>
+</html>
